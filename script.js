@@ -49,17 +49,25 @@ function buildProfessionals(lang = 'sw') {
 
 function setupTheme() {
   const btn = document.getElementById("themeBtn");
+  const book = document.getElementById("themeBook");
   const saved = localStorage.getItem("locallang-theme");
   if (saved === "dark") document.documentElement.classList.add("dark");
   updateIcon();
   btn.addEventListener("click", () => {
+    book.classList.remove("is-opening");
+    void book.offsetWidth;
+    book.classList.add("is-opening");
     document.documentElement.classList.toggle("dark");
     localStorage.setItem("locallang-theme",
       document.documentElement.classList.contains("dark") ? "dark" : "light");
     updateIcon();
+    window.setTimeout(() => book.classList.remove("is-opening"), 760);
   });
   function updateIcon() {
-    btn.textContent = document.documentElement.classList.contains("dark") ? "☀" : "☾";
+    const isDark = document.documentElement.classList.contains("dark");
+    btn.textContent = isDark ? "☀" : "☾";
+    btn.setAttribute("aria-pressed", String(isDark));
+    btn.setAttribute("aria-label", isDark ? "Washa light mode" : "Washa dark mode");
   }
 }
 
@@ -147,7 +155,12 @@ function setupLanguageSelector() {
       "project.item3.title": "03 · Uhifadhi",
       "project.item3.text": "Kulinda maneno, sauti na maarifa ya jamii.",
       "project.item4.title": "04 · Teknolojia",
-      "project.item4.text": "API na data kwa waendelezaji wa kizazi kijacho."
+      "project.item4.text": "API na data kwa waendelezaji wa kizazi kijacho.",
+      "footer.description": "Teknolojia ya lugha inayounganisha watu, inalinda urithi wa lugha, na kurahisisha upatikanaji wa maarifa Tanzania.",
+      "footer.focus": "Tunacholenga",
+      "footer.focusText": "Lugha · Jamii · Elimu · Afya · Ubunifu",
+      "footer.github": "Akaunti za GitHub",
+      "footer.motto": "Akili bandia kwa lugha za Tanzania · Umoja kupitia teknolojia"
     },
     en: {
       "nav.home": "Home",
@@ -209,7 +222,12 @@ function setupLanguageSelector() {
       "project.item3.title": "03 · Preservation",
       "project.item3.text": "Protecting words, voices and community knowledge.",
       "project.item4.title": "04 · Technology",
-      "project.item4.text": "API and data for future builders."
+      "project.item4.text": "API and data for future builders.",
+      "footer.description": "Language technology that connects people, protects linguistic heritage, and makes knowledge more accessible across Tanzania.",
+      "footer.focus": "Our focus",
+      "footer.focusText": "Languages · Communities · Education · Health · Innovation",
+      "footer.github": "GitHub accounts",
+      "footer.motto": "AI for Tanzanian languages · Unity through technology"
     }
   };
 
