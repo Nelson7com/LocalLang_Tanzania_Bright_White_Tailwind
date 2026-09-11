@@ -82,6 +82,19 @@ function setupReveal() {
   document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 }
 
+function setupProjectForm() {
+  const form = document.getElementById("projectForm");
+  const feedback = document.getElementById("formFeedback");
+
+  if (!form || !feedback) return;
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    feedback.classList.remove("hidden");
+    form.reset();
+  });
+}
+
 let currentLanguage = 'sw';
 
 function setupLanguageSelector() {
@@ -93,6 +106,7 @@ function setupLanguageSelector() {
       "nav.how": "Jinsi inavyofanya kazi",
       "nav.professionals": "Wataalamu",
       "nav.features": "Vipengele",
+      "nav.contact": "Wasiliana",
       "hero.kicker": "Akili Bandia kwa Lugha za Tanzania",
       "hero.title1": "Teknolojia inayotafasiri na kuzungumza",
       "hero.title2": "lugha za asili Tanzania.",
@@ -147,7 +161,11 @@ function setupLanguageSelector() {
       "project.item3.title": "03 · Uhifadhi",
       "project.item3.text": "Kulinda maneno, sauti na maarifa ya jamii.",
       "project.item4.title": "04 · Teknolojia",
-      "project.item4.text": "API na data kwa waendelezaji wa kizazi kijacho."
+      "project.item4.text": "API na data kwa waendelezaji wa kizazi kijacho.",
+      "contact.kicker": "Contact",
+      "contact.title1": "Build",
+      "contact.title2": "your project.",
+      "contact.description": "Tell us about your language, education, health, business, or technology need. We will prepare a tailored solution for each use case."
     },
     en: {
       "nav.home": "Home",
@@ -155,6 +173,7 @@ function setupLanguageSelector() {
       "nav.how": "How it works",
       "nav.professionals": "Professionals",
       "nav.features": "Features",
+      "nav.contact": "Contact",
       "hero.kicker": "AI for Tanzanian Languages",
       "hero.title1": "Technology that translates and speaks",
       "hero.title2": "Tanzania's indigenous languages.",
@@ -209,7 +228,11 @@ function setupLanguageSelector() {
       "project.item3.title": "03 · Preservation",
       "project.item3.text": "Protecting words, voices and community knowledge.",
       "project.item4.title": "04 · Technology",
-      "project.item4.text": "API and data for future builders."
+      "project.item4.text": "API and data for future builders.",
+      "contact.kicker": "Contact",
+      "contact.title1": "Build",
+      "contact.title2": "your project.",
+      "contact.description": "Tell us about your language, education, health, business, or technology need. We will prepare a tailored solution for each use case."
     }
   };
 
@@ -237,6 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupTheme();
   setupMobileMenu();
   setupReveal();
+  setupProjectForm();
   setupLanguageSelector();
   document.querySelectorAll("img").forEach(imageFallback);
 });
